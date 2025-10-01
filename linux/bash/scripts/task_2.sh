@@ -1,0 +1,13 @@
+#! /bin/bash
+
+## task 2 - bash
+## write a bash script that will take name and course of a user and print it to screen
+
+name=""
+course=""
+echo "------------------------------------------------------------------------"
+read -p "Enter your name: " name
+read -p "Enter your course: " course
+echo "Welcome $name"
+echo "Let's continue your lesson on $course"
+
