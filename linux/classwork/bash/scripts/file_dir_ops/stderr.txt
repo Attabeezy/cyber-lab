@@ -1,0 +1,1 @@
+stderror.sh: line 10: newCommand: command not found

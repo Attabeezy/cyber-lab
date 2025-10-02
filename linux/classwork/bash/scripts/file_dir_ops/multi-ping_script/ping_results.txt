@@ -1,0 +1,7 @@
+PING www.knust.edu.gh (192.168.1.228) 56(84) bytes of data.
+From 192.168.1.102 icmp_seq=3 Destination Host Unreachable
+From 192.168.1.102 icmp_seq=4 Destination Host Unreachable
+
+--- www.knust.edu.gh ping statistics ---
+4 packets transmitted, 0 received, +2 errors, 100% packet loss, time 12552ms
+

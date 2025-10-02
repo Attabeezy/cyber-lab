@@ -1,0 +1,20 @@
+#!/bin/bash
+
+## this script will pin two domain 4 times, and save the logs to a files with their domain names
+
+## check for two command line argument
+
+## ping each argument 4 times
+
+## save the results to files with their domain names
+
+if [ $# -ne 2 ];
+then
+	echo "Usage: $0 [Domain 1] [Domain 2]"
+	exit 1
+fi
+
+ping -c4 $1 > "$1.txt"
+ping -c4 $2 > "$2.txt"
+
+echo "Done!"
