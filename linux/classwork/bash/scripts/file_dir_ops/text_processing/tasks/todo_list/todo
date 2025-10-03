@@ -1,0 +1,65 @@
+#! /bin/bash
+
+# Script to maintain an interactive to-do list where users can add, view, and remove items.
+
+# Define the file that stores the to-do list
+todo_file="todo_list.txt"
+
+# Ensure the file exists; create if it does not
+if [ ! -f "$todo_file" ]; then
+    touch "$todo_file"                        # Create empty file for storing tasks
+fi
+
+# Function to display the menu
+show_menu() {
+    echo "--------------------------------"
+    echo "        Interactive To-Do List   "
+    echo "--------------------------------"
+    echo "1. View To-Do List"
+    echo "2. Add Item"
+    echo "3. Remove Item"
+    echo "4. Exit"
+    echo -n "Enter your choice [1-4]: "
+}
+
+# Infinite loop to keep the menu running until user exits
+while true; do
+    show_menu                                 # Show menu options
+    read choice                               # Read user input
+    
+    case $choice in
+        1)
+            echo "------ To-Do List ------"
+            if [ -s "$todo_file" ]; then
+                nl -w2 -s'. ' "$todo_file"    # Display list with numbered items
+            else
+                echo "Your to-do list is empty."
+            fi
+            ;;
+        2)
+            echo -n "Enter the item to add: "
+            read item
+            echo "$item" >> "$todo_file"      # Append item to the file
+            echo "Item added successfully."
+            ;;
+        3)
+            echo "------ To-Do List ------"
+            nl -w2 -s'. ' "$todo_file"        # Display numbered list
+            echo -n "Enter the item number to remove: "
+            read number
+            if [ "$number" -gt 0 ] 2>/dev/null && [ "$number" -le $(wc -l < "$todo_file") ]; then
+                sed -i "${number}d" "$todo_file"  # Remove the specified line
+                echo "Item removed successfully."
+            else
+                echo "Invalid item number."
+            fi
+            ;;
+        4)
+            echo "Exiting To-Do List. Goodbye!"
+            exit 0
+            ;;
+        *)
+            echo "Invalid choice. Please enter a number between 1 and 4."
+            ;;
+    esac
+done

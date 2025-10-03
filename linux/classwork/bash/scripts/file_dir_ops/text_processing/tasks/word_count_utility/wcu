@@ -1,0 +1,33 @@
+#! /bin/bash
+
+# Script to count the number of words, lines, and characters in a given text file
+
+# Check if exactly one argument is provided
+if [ $# -ne 1 ];
+then
+    echo "Usage: $0 [filename]"               # Print usage instructions
+    echo "filename: the path of the text file you want to analyze"
+    exit 1                                    # Exit if argument count is not equal to 1
+fi
+
+# Assign the first argument to variable 'file'
+file=$1
+
+# Check if the argument is a valid file
+if [ ! -f "$file" ];
+then
+    echo "$file is not a regular file"        # Print error if not a file
+    exit 1                                    # Exit if condition fails
+fi
+
+# Use 'wc' command to count lines, words, and characters
+line_count=$(wc -l < "$file")                 # Count lines
+word_count=$(wc -w < "$file")                 # Count words
+char_count=$(wc -m < "$file")                 # Count characters
+
+# Print the results
+echo "File: $file"
+echo "Lines: $line_count"
+echo "Words: $word_count"
+echo "Characters: $char_count"
+

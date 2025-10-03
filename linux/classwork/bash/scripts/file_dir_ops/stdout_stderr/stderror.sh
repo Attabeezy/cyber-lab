@@ -11,3 +11,4 @@ newCommand 2> stderr.txt
 
 echo "The next command will return both stdout and stderr to a file called stdout_stderr.txt"
 ## echo "This is a regular stdout" &> stdout_stderr.txt newCommand &>> stdout_stderr.txt
+echo "This is a regular stdout" &> stdout_stderr.txt && newCommand &>> stdout_stderr.txt
