@@ -10,17 +10,17 @@ To-do List App
 
 def addTask(task):
     with open("todo.txt", 'a') as file:
-        file.writelines(f"{str(task).strip()}\n")
-    print(f"task: {task} added!")
+        file.writelines(f"{str(task).strip()}")
+    print(f"task: '{task}' added!")
     return
 
 
 def viewTasks():
     with open("todo.txt", 'r') as file:
-        task = file.readlines
+        tasks = file.readlines()
         print("-" * 10)
         for index, task in enumerate(tasks, start=1):
-            print(f"{index} . {task.strip()}")
+            print(f"{index}. {task.strip()}")
         print("-" * 10)
 
 
@@ -28,25 +28,25 @@ def removeTask(task_number):
     with open("todo.txt", 'r') as file:
         tasks = file.readlines()
 
-    with open("todo.txt", 'w') as file:
+        if len(tasks) == 0:
+            print("No tasks!")
+            return
+
         if task_number < 1 or task_number > len(tasks):
-            if len(tasks) == 0:
-                print("No tasks!")
-                return
-        print("Invalid task number!")
-        return
+            print("Invalid task number!")
+            return
     
     
-    removed = tasks[task_number - 1]
+    removed = tasks[task_number - 1].strip()
     tasks.pop(task_number - 1)
     with open("todo.txt", 'w') as file:
         file.writelines(tasks)
-        print(f"{removed} removed!")
+        print(f"'{removed.strip()}' removed!")
      
 
-def exit():
+def exitProgram():
     print("exiting....")
-    exit(0)
+    exit()
 
 def main():
     ## task inputs, logic check, etc
@@ -58,10 +58,11 @@ def main():
         elif opt == "view":
             viewTasks()
         elif opt == "remove":
+            viewTasks()
             task_number = int(input("Enter task number to remove: "))
             removeTask(task_number)
         elif opt == "exit":
-            exit()
+            exitProgram()
         else:
             print("Invalid option! Please try again.")
 
