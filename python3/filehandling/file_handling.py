@@ -26,4 +26,5 @@ lines = ["We are learning about python file handling.\n",
 print(lines)
 
 ## writing to a new filename
-with open("python_community.txt", 'w')
+with open("python_community.txt", 'w') as file:
+    print(file.read())
